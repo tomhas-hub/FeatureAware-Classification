@@ -698,7 +698,7 @@ __device__ float BhattacharyyaDistanceBetween2GMMComponents(float mu1, float sig
 	float result;
 	sigma1 = powf(sigma1, 2);
 	sigma2 = powf(sigma2, 2);
-	result = (1.0f / 8.0f) * (mu1 - mu2) * powf((powf(sigma1,2) + powf(sigma2,2)) / 2.0f, -1.0f) * (mu1 - mu2) + (1.0f / 2.0f) * logf(abs((powf(sigma1,2) + powf(sigma2,2)) / 2.0f) / sqrtf(abs(sigma1) * abs(sigma2)));
+	result = (1.0f / 8.0f) * (mu1 - mu2) * powf((sigma1 + sigma2) / 2.0f, -1.0f) * (mu1 - mu2) + (1.0f / 2.0f) * logf(abs((sigma1 + sigma2) / 2.0f) / sqrtf(abs(sigma1) * abs(sigma2)));
 
 	/*
 	//Test: print result value.
@@ -903,11 +903,10 @@ int main()
 	//int fid = 0;
 
 	dim3 blockSize = { 4, 4, 4 };
-	float selectRegionxmin = 76, selectRegionymin = 21, selectRegionzmin = 2;
-	float selectRegionxmax = 82, selectRegionymax = 24, selectRegionzmax = 42;
+	float selectRegionxmin = 78, selectRegionymin = 18, selectRegionzmin = 3;
+	float selectRegionxmax = 86, selectRegionymax = 22, selectRegionzmax = 43;
 	//printf("blockSize.x: %d, blockSize.y: %d, blockSize.z: %d.\n", blockSize.x, blockSize.y, blockSize.z);
 
-	//ok
 
 	//0. compute target feature center at initial time step, and
 	//assign tarFeatCenter_initialTimeStep to tarFeatCenter_lastTimeStep.
@@ -1484,7 +1483,7 @@ int main()
 		//(20.2)given the best match connected component bestMatchCC_currentTimeStep (which is the target feature) and 
 		//ccLabelVol_currentTimeStep at current time step, 
 		//clear the classificationField_currentTimeStep (which are not the target feature) at current time step.
-		/*for (int k = 0; k < zDim; k++)
+		for (int k = 0; k < zDim; k++)
 		for (int j = 0; j < yDim; j++)
 		for (int i = 0; i < xDim; i++)
 		{
@@ -1493,7 +1492,7 @@ int main()
 			{
 				classificationField_currentTimeStep[i + j * xDim + k * xDim * yDim] = 0.0f;
 			}
-		}*/
+		}
 
 
 		//(20.3)given the best match connected component (which is the target feature) at current time step, obtain its center.
