@@ -21,12 +21,13 @@ function v3BlockGMMsAndTarFeatGMMGenAtTarFeatTS()
     %the region is selected at time step flow_t0208.am.
     %Note: selectedRegion = [xLowBound, xHighBound; yLowBound, yHighBound; zLowBound, zHighBound] (all begins at 1);
 	%selectedRegion = [77, 83; 22, 25; 3, 43]; %ÌØÕ÷·¶Î§
-    %selectedRegion = [75, 87; 18, 23; 3, 43]; %ÌØÕ÷·¶Î§v8
-    selectedRegion = [78, 86; 18, 22; 3, 43]; %ÌØÕ÷·¶Î§
+    selectedRegion = [75, 87; 18, 23; 3, 43]; %ÌØÕ÷·¶Î§v8
+    %selectedRegion = [80, 86; 17, 21; 3, 43]; %ÌØÕ÷·¶Î§
     fileStartVal = 8;
     fileIncrement = 40;
     %tarFeatTimeStep = 5;  %the time step where the target feature is selected (note: time step begins at 0).
     tarFeatTimeStep = 10;
+    %tarFeatTimeStep = 23; %flowt_0928
     %---------%only information here needs to be provided by user.----------%
     
     

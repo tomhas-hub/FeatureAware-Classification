@@ -26,7 +26,7 @@ using namespace std;
 #define		FILEINCREMENT			40
 #define		THRESHOLD_WEIGHT		0.2	//did not mention in this paper.
 //#define		TARFEATTIMESTEP			5	//the time step where the target feature is selected (note: time step begins at 0).
-#define		TARFEATTIMESTEP			10
+#define		TARFEATTIMESTEP			10 // flow_t0408
 #define		GAMMA					0.7	//according to the paper.
 #define		THRESHOLD_POSS			0.8	//according to the paper.
 
@@ -469,8 +469,8 @@ __global__ void computePerBlockGMMAndProbForeground_currentTimeStep(int xDim, in
 		//6. use this voxel value to change this block's GMM_beforeVoxel to obtain GMM_afterVoxel.	
 		//(6.1)check this voxel value with 3 GMM components, respectively to obtain matchVals. 
 		bool match = false;
-		bool matchForProb3 = false;
 		bool matchForProb1 = false;
+		bool matchForProb3 = false;
 		float matchVals[NUMGMMCOMPONENTS] = { -1, -1, -1 };
 		for (int c = 0; c < NUMGMMCOMPONENTS; c++)
 		{
@@ -903,8 +903,8 @@ int main()
 	//int fid = 0;
 
 	dim3 blockSize = { 4, 4, 4 };
-	float selectRegionxmin = 78, selectRegionymin = 18, selectRegionzmin = 3;
-	float selectRegionxmax = 86, selectRegionymax = 22, selectRegionzmax = 43;
+	float selectRegionxmin = 75, selectRegionymin = 18, selectRegionzmin = 3;
+	float selectRegionxmax = 87, selectRegionymax = 23, selectRegionzmax = 43;
 	//printf("blockSize.x: %d, blockSize.y: %d, blockSize.z: %d.\n", blockSize.x, blockSize.y, blockSize.z);
 
 
@@ -934,7 +934,7 @@ int main()
 	printf("Uniform Grid: %s\n", isUniform ? "true" : "false");
 	printf("Number of Vector Components: %d.\n", numVecComponents);
 
-	// ok
+
 
 	//2. read tarFeatGMMmu.raw, tarFeatGMMsigma.raw and tarFeatGMMcompProp.raw at tarFeat time step,
 	//and copy them to dev_tarFeatGMMmu, dev_tarFeatGMMsigma, dev_tarFeatGMMcompProp.
